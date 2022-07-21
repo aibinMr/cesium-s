@@ -309,6 +309,12 @@ function ImageryLayer(imageryProvider, options) {
   this._requestImageError = undefined;
 
   this._reprojectComputeCommands = [];
+  this._reprojectComputeCommands.__proto__ = Object.create(Array.prototype);
+  this._reprojectComputeCommands.__proto__.push = function(...args) {
+    const curArr = this;
+    console.log("-----_reprojectComputeCommands-------");
+    return Array.prototype.push.call(curArr, ...args);
+  };
 
   /**
    * Rectangle cutout in this layer of imagery.
